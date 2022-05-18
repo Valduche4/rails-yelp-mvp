@@ -4,3 +4,18 @@
 <p><%= @restaurant.address %></p>
 <p><%= @restaurant.phone_number %></p>
 <p><%= @restaurant.category %></p>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %> ||  <%= review.rating %> || <%= link_to "🗑", review_path(review),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %></li>
+  <% end %>
+</ul>
+
+<%= link_to "✎", edit_restaurant_path(@restaurant) %> |
+<%= link_to "🗑",
+            restaurant_path(@restaurant),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %> |
+<%= link_to '★★★★', new_restaurant_review_path(@restaurant) %> |
+<%= link_to '🏠', restaurants_path %> |
